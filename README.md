@@ -2,7 +2,7 @@
 Very simple serial command line interpreter for Arduino.
 
 ## Installation
-* Download or clone this repository to `Arduino/libraries/CommandLine`
+* [Download](https://github.com/basilfx/Arduino-CommandLine/archive/master.zip) or clone this repository to `Arduino/libraries/CommandLine`
 * Restart Arduino IDE
 * Checkout examples
 
