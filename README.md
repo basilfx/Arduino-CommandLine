@@ -1,4 +1,4 @@
-# CommandLine v2.0
+# CommandLine v2.0.0
 No-nonsense serial command line interpreter for Arduino.
 
 ## Installation
