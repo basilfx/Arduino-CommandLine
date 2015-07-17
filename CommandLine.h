@@ -6,22 +6,24 @@
 
 #include "Arduino.h"
 
-// Number of commands to support
+// Number of commands to support.
 #ifndef COMMANDLINE_COUNT
   #define COMMANDLINE_COUNT 8
 #endif
 
-// Maximum number of characters in input buffer
+// Maximum number of characters in input buffer.
 #ifndef COMMANDLINE_BUFFER
   #define COMMANDLINE_BUFFER 64
 #endif
 
-// Keycode defines
-#define KEYCODE_ENTER 13
+// Keycode defines.
 #define KEYCODE_BACKSPACE 8
-#define KEYCODE_DELETE 127
 #define KEYCODE_TAB 9
+#define KEYCODE_ENTER 13
 #define KEYCODE_SPACE 32
+#define KEYCODE_UP 65
+#define KEYCODE_DOWN 66
+#define KEYCODE_DELETE 127
 
 /**
  * Command instance
@@ -60,6 +62,7 @@ public:
      * Read the serial stream and evaluate commands.
      *
      * @return True if a command was evaluated and executed.
+     * @return True if a command was evaluated and executed, false otherwise.
      */
     bool update(void);
 
@@ -67,16 +70,16 @@ public:
      * Add a new command.
      *
      * @param Comand instance to add.
-     * @return True on success
+     * @return True on success, false otherwise.
      */
     bool add(Command& command);
 
     /**
      * Add a new command, dynamically.
      *
-     * @param command Name of the command
-     * @param callback Function pointer
-     * @return True on success
+     * @param command Name of the command.
+     * @param callback Function pointer.
+     * @return True on success, false otherwise.
      */
     bool add(char* command, void (*callback)(char*));
 
@@ -84,7 +87,7 @@ public:
      * Remove a command instance
      *
      * @param Comand instance to remove.
-     * @return True on success
+     * @return True on success, false otherwise.
      */
     bool remove(Command& command);
 

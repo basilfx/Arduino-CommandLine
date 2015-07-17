@@ -35,20 +35,20 @@ bool CommandLine::update()
                     }
                 }
 
-                // Reset
+                // Reset the byte buffer index.
                 length = 0;
 
-                // Write new input
+                // Write a new input token.
                 this->serial.print(token);
 
                 break;
             case KEYCODE_BACKSPACE:
             case KEYCODE_DELETE:
                 if (length > 0) {
-                    // Move pointer
+                    // Reduce byte buffer index.
                     length--;
 
-                    // Clear last char on screen
+                    // Clear last char on screen.
                     this->serial.write(KEYCODE_BACKSPACE);
                     this->serial.write(KEYCODE_SPACE);
                     this->serial.write(KEYCODE_BACKSPACE);
