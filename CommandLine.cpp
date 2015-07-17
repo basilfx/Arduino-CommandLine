@@ -24,6 +24,14 @@ bool CommandLine::update()
                     char* split = strtok(buffer, " ");
                     uint8_t tokenLength = strlen(split);
 
+                    // Handle post command callback.
+                    #ifdef COMMANDLINE_PRE_POST
+                        if (this->preCallback != NULL) {
+                            this->preCallback(buffer);
+                        }
+                    #endif
+
+                    // Find the first matching command and invoke callback.
                     for (int i = 0; i < index; i++) {
                         if (strncmp(split, commands[i]->command, tokenLength) == 0) {
                             if (strlen(commands[i]->command) == tokenLength) {
@@ -33,6 +41,13 @@ bool CommandLine::update()
                             }
                         }
                     }
+
+                    // Handle post command callback.
+                    #ifdef COMMANDLINE_PRE_POST
+                        if (this->postCallback != NULL) {
+                            this->postCallback(buffer, success);
+                        }
+                    #endif
                 }
 
                 // Reset the byte buffer index.
@@ -126,3 +141,14 @@ bool CommandLine::remove(Command& command)
     return false;
 }
 
+#ifdef COMMANDLINE_PRE_POST
+    void CommandLine::attachPre(void (*callback)(char*))
+    {
+        this->preCallback = callback;
+    }
+
+    void CommandLine::attachPost(void (*callback)(char*, bool))
+    {
+        this->postCallback = callback;
+    }
+#endif

@@ -8,13 +8,16 @@
 
 // Number of commands to support.
 #ifndef COMMANDLINE_COUNT
-  #define COMMANDLINE_COUNT 8
+    #define COMMANDLINE_COUNT 8
 #endif
 
 // Maximum number of characters in input buffer.
 #ifndef COMMANDLINE_BUFFER
-  #define COMMANDLINE_BUFFER 64
+    #define COMMANDLINE_BUFFER 64
 #endif
+
+// Add support for pre and post command execution. It's disabled by default.
+// #define COMMANDLINE_PRE_POST
 
 // Keycode defines.
 #define KEYCODE_BACKSPACE 8
@@ -61,7 +64,6 @@ public:
     /**
      * Read the serial stream and evaluate commands.
      *
-     * @return True if a command was evaluated and executed.
      * @return True if a command was evaluated and executed, false otherwise.
      */
     bool update(void);
@@ -91,6 +93,26 @@ public:
      */
     bool remove(Command& command);
 
+#ifdef COMMANDLINE_PRE_POST
+    /**
+     * Attach pre-command execution handler. This callback is invoked
+     * before each non-empty input command. Set to NULL to clear.
+     *
+     * @param callback Function pointer callback. Parameter is input the
+     *                 string.
+     */
+    void attachPre(void (*callback)(char*));
+
+    /**
+     * Attach post-command execution handler. This callback is invoked
+     * after each non-empty input command. Set to NULL to clear.
+     *
+     * @param callback Function pointer callback. First parameter is the
+     *                 input string, second parameter indicates success.
+     */
+    void attachPost(void (*callback)(char*, bool));
+#endif
+
 private:
     Stream& serial;
 
@@ -101,6 +123,11 @@ private:
     char buffer[COMMANDLINE_BUFFER + 1];
 
     char* token;
+
+#ifdef COMMANDLINE_PRE_POST
+    void (*preCallback)(char*);
+    void (*postCallback)(char*, bool);
+#endif
 };
 
 #endif
