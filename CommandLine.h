@@ -13,17 +13,16 @@
 
 // Maximum number of characters in input buffer.
 #ifndef COMMANDLINE_BUFFER
-    #define COMMANDLINE_BUFFER 64
+    #define COMMANDLINE_BUFFER 32
 #endif
 
-// Maximum number of commands to keep in history (for up/down support). It's
-// disabled by default.
+// Maximum number of commands to keep in history (for up/down support).
 #ifndef COMMANDLINE_HISTORY
-    #define COMMANDLINE_HISTORY 0
+    #define COMMANDLINE_HISTORY 2
 #endif
 
-// Add support for pre and post command execution. It's disabled by default.
-// #define COMMANDLINE_PRE_POST
+// Add support for pre and post command execution.
+#define COMMANDLINE_PRE_POST
 
 // Keycode defines.
 #define KEYCODE_BACKSPACE 8
