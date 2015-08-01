@@ -5,7 +5,11 @@ Released XX August 2015
 
 Highlights:
 * Added: optional support for pre/post callbacks.
-* Added: pre/post callbacks example sketch (read README.md!)
+* Added: pre/post callbacks example sketch (read README.md).
+* Added: basic command history support.
+* Improved: more uniform code style.
+* Fixed: don't add commands twice.
+* Fixed: basic example help message was incorrect.
 
 The full list of commits can be found [here](https://github.com/basilfx/Arduino-CommandLine/compare/v2.0.0...v2.1.0).
 
