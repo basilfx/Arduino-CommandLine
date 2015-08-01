@@ -82,6 +82,5 @@ void handleRemove(char* tokens)
  */
 void handleHelp(char* tokens)
 {
-  Serial.println("Use the commands 'help', 'count', 'enable' or 'disable'.");
+  Serial.println("Use the commands 'help', 'count', 'add' or 'remove'.");
 }
-
