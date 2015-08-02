@@ -1,7 +1,7 @@
 # Changelog
 
 ## v2.1.0
-Released XX August 2015
+Released 02 August 2015
 
 Highlights:
 * Added: optional support for pre/post callbacks.
